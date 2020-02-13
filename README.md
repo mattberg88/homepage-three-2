@@ -1,4 +1,6 @@
-# Sales Management Frontend
+# Genome Project
+
+This is a sample project using the ThreeJS-React integration [https://github.com/react-spring/react-three-fiber](react-three-fiber) to display 3D infographics while using React and Semantic-UI to make for a speedy and aesthetically pleasing user interface.
 
 ## Installation & Starting Up
 
