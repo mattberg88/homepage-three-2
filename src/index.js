@@ -1,7 +1,7 @@
 import ReactDOM from 'react-dom'
 import React, { Suspense } from 'react'
 import { Canvas } from 'react-three-fiber'
-import DNA from './dna'
+import DNA from './components/dna'
 import './styles.css'
 
 function App() {
