@@ -17,8 +17,18 @@ body,
   -moz-osx-font-smoothing: grayscale;
 }
 
-.grid {
-  height: 100%;
+Canvas {
+  height: 80vh;
+  background-color: darkgray;
 
   
+}
+.genome_interface_header {
+    margin: 5px 0 0 0 !important;
+
+  font-size: 28px !important;
+  text-align: center;
+}
+.genome_interface_logo {
+  margin: 0 0 8px 0;
 }

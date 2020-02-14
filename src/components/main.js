@@ -9,8 +9,22 @@ extend({ EffectComposer, RenderPass })
 
 export default function Main() {
   const onHover = (e) => {
-    console.log( e.object.material.color, 'hover')
-    e.object.material.color.r += 1
+    const { name, material } = e.object
+    console.log(name)
+    if (name.includes('face001')) {
+      e.object.material.color.r = 2
+    }
+    if (name.includes('face002')) {
+      e.object.material.color.b = 2
+    }    
+    if (name.includes('face003')) {
+      e.object.material.color.g = 2
+    }
+  }
+  const onExit = (e) => {
+    console.log(e.object.material.color, 'hover')
+    const { name, material } = e.object
+    material.color = { r: 1, g: 1, b: 1 }
   }
   const [scene] = useState(() => new THREE.Scene())
   const composer = useRef()
@@ -28,8 +42,11 @@ export default function Main() {
       </effectComposer>
       <ambientLight />
       <spotLight position={[100, 10, 10]} />
-      <mesh onPointerOver={e => onHover(e)}>
-      <Suspense fallback={<></>}>{<DNA />}</Suspense>
+      <mesh 
+        onPointerOver={e => onHover(e)}
+        onPointerOut={e => onExit(e)}
+      >
+      <Suspense fallback={<React.Fragment/>}>{<DNA />}</Suspense>
       </mesh>
     </>,
     scene
