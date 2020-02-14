@@ -1,5 +1,6 @@
 import * as THREE from 'three'
 import React, { useState, useMemo } from 'react'
+import { Pie } from 'react-chartjs-2';
 import { Canvas, useFrame, useThree } from 'react-three-fiber'
 import Controls from './components/controls'
 import Main from './components/main'
@@ -70,11 +71,31 @@ export default function App() {
           <Header className='genome_interface_header'>
             <Image className='genome_interface_logo' src='unite-symbol.png' size='tiny' />Genome Interface
           </Header>
+          <Pie
+            data={{
+              labels: ['cystic fibrosis', 'sickle cell', 'marfan syndrome', 'hemochromatosis', 'alzheimers', 'diabetes'],
+              datasets: [{
+                data: [12, 20, 32, 10, 16, 40],
+                backgroundColor: ['rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(75, 192, 192)', 'rgb(255, 159, 64)', 'rgb(153, 102, 255)', 'rgb(201, 203, 207)']
+              }]
+            }}
+            options={{
+              title: {
+                display: true,
+                text: 'Potential Genetic Diseases',
+                fontSize: 14
+              },
+              legend: {
+                display: true,
+                position: 'right'
+              }
+            }}
+          />
         </Grid.Column>
         <Grid.Column width={12}>
           <Loader active={loading} />
 
-          <Canvas onCreated={() => onLoaded()} shadowMap={true}>
+          <Canvas onCreated={() => onLoaded()}>
             <Content />
           </Canvas>
       

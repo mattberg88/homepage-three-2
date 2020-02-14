@@ -11,20 +11,26 @@ export default function Main() {
   const onHover = (e) => {
     const { name, material } = e.object
     console.log(name)
-    if (name.includes('face001')) {
-      e.object.material.color.r = 2
+    
+    if (name.includes('Adenine')) {
+      material.color = { r: 0.6, g: 0, b: 0 }
     }
-    if (name.includes('face002')) {
-      e.object.material.color.b = 2
+    if (name.includes('Guanine')) {
+      material.color = { r: 0, g: 0.6, b: 0 }
     }    
-    if (name.includes('face003')) {
-      e.object.material.color.g = 2
+    if (name.includes('Thymine')) {
+      material.color = { r: 0, g: 0, b: 0.6 }
+    }
+    if (name.includes('Cytosine')) {
+      material.color = { r: 0.6, g: 0, b: 0.6 }
+    }
+    if (name.includes('Strand')) {
+      material.color = { r: 0.6, g: 0.6, b: 0 }
     }
   }
   const onExit = (e) => {
-    console.log(e.object.material.color, 'hover')
     const { name, material } = e.object
-    material.color = { r: 1, g: 1, b: 1 }
+    material.color = { r: 0.64, g: 0.64, b: 0.64 }
   }
   const [scene] = useState(() => new THREE.Scene())
   const composer = useRef()

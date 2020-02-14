@@ -17,11 +17,10 @@ body,
   -moz-osx-font-smoothing: grayscale;
 }
 
-Canvas {
+canvas {
   height: 80vh;
   background-color: darkgray;
-
-  
+  outline:none
 }
 .genome_interface_header {
     margin: 5px 0 0 0 !important;
@@ -31,4 +30,9 @@ Canvas {
 }
 .genome_interface_logo {
   margin: 0 0 8px 0;
+}
+
+.chartjs-render-monitor {
+  margin: 20px 0 0 0;
+  background-color: #fff;
 }
