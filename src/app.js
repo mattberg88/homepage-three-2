@@ -23,29 +23,26 @@ function Content() {
     </group>
   )
 }
-
+const onCanvasClick = (e) => {
+  e.preventDefault()
+}
 export default function App() {
   return (
-    <Grid padded={true} columns={3}>
-      <Grid.Row columns={3}>
-        <Grid.Column textAlign='left' >
+    <Grid padded={true}>
+      <Grid.Row >
+        <Grid.Column width={4} textAlign='center' floated='left'>
           <Image src='unite-logo.png' size='tiny' />
+          <Header >
+            Genome Viewer
+          </Header>
         </Grid.Column>
-        <Grid.Column textAlign='center' >
-            <Header icon>
-              Genome Viewer
-            </Header>
-        </Grid.Column>
-        <Grid.Column />
-      </Grid.Row>
-      <Grid.Row columns={3}>
-        <Grid.Column />
-        <Grid.Column className='canvas_viewer'>
-          <Canvas>
+        <Grid.Column width={12}>
+          <Canvas onClick={onCanvasClick}>
             <Content />
           </Canvas>
         </Grid.Column>
       </Grid.Row>
+
     </Grid>
   )
 }

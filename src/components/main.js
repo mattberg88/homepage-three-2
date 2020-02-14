@@ -1,5 +1,4 @@
 import * as THREE from 'three'
-
 import React, { Suspense, useRef, useEffect, useState } from 'react'
 import { createPortal, extend, useFrame, useThree } from 'react-three-fiber'
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer'
@@ -9,6 +8,10 @@ import DNA from './dna'
 extend({ EffectComposer, RenderPass })
 
 export default function Main() {
+  const onHover = (e) => {
+    console.log( e.object.material.color, 'hover')
+    e.object.material.color.r += 1
+  }
   const [scene] = useState(() => new THREE.Scene())
   const composer = useRef()
   const { gl, size, camera } = useThree()
@@ -25,7 +28,7 @@ export default function Main() {
       </effectComposer>
       <ambientLight />
       <spotLight position={[100, 10, 10]} />
-      <mesh>
+      <mesh onPointerOver={e => onHover(e)}>
       <Suspense fallback={<></>}>{<DNA />}</Suspense>
       </mesh>
     </>,

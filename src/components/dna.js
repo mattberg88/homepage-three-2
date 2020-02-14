@@ -1,7 +1,7 @@
 import React from 'react'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { useLoader } from 'react-three-fiber'
-import dna from '../assets/DNA.glb'
+import dna from '../assets/grouped_dna.glb'
 
 export default function DNA() {
   const gltf = useLoader(GLTFLoader, dna)
