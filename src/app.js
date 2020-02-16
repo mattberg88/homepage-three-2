@@ -1,10 +1,12 @@
 import * as THREE from 'three'
 import React, { useState, useMemo } from 'react'
-import { Pie } from 'react-chartjs-2';
 import { Canvas, useFrame, useThree } from 'react-three-fiber'
 import Controls from './components/controls'
+import PieChart from './components/charts/pie' 
+import LineChart from './components/charts/line' 
+
 import Main from './components/main'
-import { Grid, Menu, Header, Dimmer, Loader, Image } from 'semantic-ui-react'
+import { Grid, Menu, Header, Loader, Image } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css'
 
 function Content() {
@@ -38,7 +40,7 @@ export default function App() {
   }
 
   return (
-    <Grid padded={true} >
+    <Grid padded={true} celled={true} divided={true} relaxed={true} horizontalAlign='middle'>
       <Grid.Row >
         <Grid.Column>
           <Menu inverted>
@@ -67,34 +69,15 @@ export default function App() {
         </Grid.Column>
       </Grid.Row >
       <Grid.Row >
-        <Grid.Column width={4} textAlign='center' floated='left'>
+        <Grid.Column name='chart_column' width={4} textAlign='center'>
           <Header className='genome_interface_header'>
             <Image className='genome_interface_logo' src='unite-symbol.png' size='tiny' />Genome Interface
           </Header>
-          <Pie
-            data={{
-              labels: ['cystic fibrosis', 'sickle cell', 'marfan syndrome', 'hemochromatosis', 'alzheimers', 'diabetes'],
-              datasets: [{
-                data: [12, 20, 32, 10, 16, 40],
-                backgroundColor: ['rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(75, 192, 192)', 'rgb(255, 159, 64)', 'rgb(153, 102, 255)', 'rgb(201, 203, 207)']
-              }]
-            }}
-            options={{
-              title: {
-                display: true,
-                text: 'Potential Genetic Diseases',
-                fontSize: 14
-              },
-              legend: {
-                display: true,
-                position: 'right'
-              }
-            }}
-          />
+          <PieChart/>
+          <LineChart/>
         </Grid.Column>
-        <Grid.Column width={12}>
+        <Grid.Column name='viewer_column'width={12}>
           <Loader active={loading} />
-
           <Canvas onCreated={() => onLoaded()}>
             <Content />
           </Canvas>

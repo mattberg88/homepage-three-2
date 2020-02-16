@@ -19,20 +19,24 @@ body,
 
 canvas {
   height: 80vh;
-  background-color: darkgray;
-  outline:none
+  background-color: rgb(238, 234, 233);
+  outline:none;
 }
 .genome_interface_header {
-    margin: 5px 0 0 0 !important;
-
-  font-size: 28px !important;
+  margin: 5px 0 0 0 !important;
+  font-size: 20px !important;
+  white-space: nowrap;
   text-align: center;
 }
 .genome_interface_logo {
   margin: 0 0 8px 0;
 }
-
 .chartjs-render-monitor {
   margin: 20px 0 0 0;
   background-color: #fff;
+}
+.column[name="chart_column"] {
+  max-width: 300px;
+  min-width: 230px;
+
 }

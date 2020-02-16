@@ -8,29 +8,23 @@ import DNA from './dna'
 extend({ EffectComposer, RenderPass })
 
 export default function Main() {
+  const [toolTip, setToolTip] = useState(false)
   const onHover = (e) => {
-    const { name, material } = e.object
-    console.log(name)
-    
-    if (name.includes('Adenine')) {
-      material.color = { r: 0.6, g: 0, b: 0 }
+    const { color } = e.object.material
+    color.r += 0.1
+    color.g += 0.1
+    color.b += 0.1
+    const mouse = {
+      x: (e.clientX / window.innerWidth) * 2 - 1,
+      y: (e.clientY / window.innerWidth) * 2 - 1,
     }
-    if (name.includes('Guanine')) {
-      material.color = { r: 0, g: 0.6, b: 0 }
-    }    
-    if (name.includes('Thymine')) {
-      material.color = { r: 0, g: 0, b: 0.6 }
-    }
-    if (name.includes('Cytosine')) {
-      material.color = { r: 0.6, g: 0, b: 0.6 }
-    }
-    if (name.includes('Strand')) {
-      material.color = { r: 0.6, g: 0.6, b: 0 }
-    }
+    console.log(mouse)
   }
   const onExit = (e) => {
-    const { name, material } = e.object
-    material.color = { r: 0.64, g: 0.64, b: 0.64 }
+    const { color } = e.object.material
+    color.r -= 0.1
+    color.g -= 0.1
+    color.b -= 0.1
   }
   const [scene] = useState(() => new THREE.Scene())
   const composer = useRef()
