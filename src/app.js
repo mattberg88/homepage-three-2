@@ -4,16 +4,17 @@ import { Canvas, useFrame, useThree } from 'react-three-fiber'
 import Controls from './components/controls'
 import PieChart from './components/charts/pie' 
 import LineChart from './components/charts/line' 
-
+import NavBar from './components/navbar'
 import Main from './components/main'
-import { Grid, Menu, Header, Loader, Image } from 'semantic-ui-react'
+import Footer from './components/footer'
+import { Grid, Header, Loader, Image, Segment } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css'
 
-function Content() {
+function Content({ setSelected }) {
   const { size, setDefaultCamera } = useThree()
   const [camera] = useState(() => {
     const cam = new THREE.PerspectiveCamera(55, size.width / size.height)
-    cam.position.set(0, 0, 10)
+    cam.position.set(0, 0, 3)
     setDefaultCamera(cam)
     return cam
   })
@@ -22,50 +23,23 @@ function Content() {
   return (
     <group>
       <Controls />
-      <Main />
+      <Main setSelected={setSelected}/>
     </group>
   )
 }
 
 export default function App() {
-  const [activeItem, setActiveItem] = useState('viewer')
   const [loading, setLoading] = useState(true)
-  const handleItemClick = (e, props) => {
-    console.log(props)
-    setActiveItem(props.name)
-  }
-
+  const [selected, setSelected] = useState('Mouse over to see info')
   const onLoaded = () => {
     setLoading(false)
   }
 
   return (
-    <Grid padded={true} celled={true} divided={true} relaxed={true} horizontalAlign='middle'>
+    <Grid padded={true} divided={true} relaxed={true} >
       <Grid.Row >
         <Grid.Column>
-          <Menu inverted>
-            <Menu.Item
-              name='home'
-              active={activeItem === 'home'}
-              onClick={handleItemClick}
-            />
-            <Menu.Item
-              name='viewer'
-              active={activeItem === 'viewer'}
-              onClick={handleItemClick}
-            />
-            <Menu.Item
-              name='about'
-              active={activeItem === 'about'}
-              onClick={handleItemClick}
-            />
-            <Menu.Item
-              position='right'
-            >
-              <Image src='unite-logo-transparency.png' size='tiny' />
-
-            </Menu.Item>
-          </Menu>
+         <NavBar />
         </Grid.Column>
       </Grid.Row >
       <Grid.Row >
@@ -73,19 +47,23 @@ export default function App() {
           <Header className='genome_interface_header'>
             <Image className='genome_interface_logo' src='unite-symbol.png' size='tiny' />Genome Interface
           </Header>
+          <LineChart />
           <PieChart/>
-          <LineChart/>
         </Grid.Column>
         <Grid.Column name='viewer_column'width={12}>
+          <Segment id='genome_gui' raised={true}>{selected}</Segment>
+
           <Loader active={loading} />
           <Canvas onCreated={() => onLoaded()}>
-            <Content />
+            <Content setSelected={setSelected}/>
           </Canvas>
-      
-
         </Grid.Column>
       </Grid.Row>
-
+      <Grid.Row >
+        <Grid.Column>
+          <Footer />
+        </Grid.Column>
+      </Grid.Row >
     </Grid>
   )
 }

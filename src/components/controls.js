@@ -8,6 +8,6 @@ const Controls = () => {
   const { camera, gl } = useThree()
   const ref = useRef()
   useFrame(() => ref.current.update())
-  return <orbitControls ref={ref} target={[0, 0, 0]} enableDamping args={[camera, gl.domElement]} />
+  return <orbitControls ref={ref} target={[0, 0, 0]} rotateSpeed={0.7} enableDamping args={[camera, gl.domElement]} />
 }
 export default Controls;

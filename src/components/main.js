@@ -1,24 +1,32 @@
 import * as THREE from 'three'
-import React, { Suspense, useRef, useEffect, useState } from 'react'
+import React, { Suspense, useRef, useEffect, useState, useMemo } from 'react'
 import { createPortal, extend, useFrame, useThree } from 'react-three-fiber'
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer'
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass'
+import { FilmPass } from 'three/examples/jsm/postprocessing/FilmPass'
 import DNA from './dna'
+extend({ EffectComposer, RenderPass, FilmPass })
 
-extend({ EffectComposer, RenderPass })
-
-export default function Main() {
-  const [toolTip, setToolTip] = useState(false)
+export default function Main({setSelected}) {
+  useEffect(() => {
+  }, [])
   const onHover = (e) => {
     const { color } = e.object.material
     color.r += 0.1
     color.g += 0.1
     color.b += 0.1
-    const mouse = {
-      x: (e.clientX / window.innerWidth) * 2 - 1,
-      y: (e.clientY / window.innerWidth) * 2 - 1,
+    switch(e.object.name) {
+      case 'Strand':
+        return setSelected('Sugar-Phosphate Backbone')
+      case 'Thymine':
+        return setSelected('Thymine: One of the four DNA bases')
+      case 'Cytosine':
+        return setSelected('Cytosine: One of the four DNA bases')
+      case 'Adenine':
+        return setSelected('Adenine: One of the four DNA bases')
+      case 'Guanine':
+        return setSelected('Guanine: One of the four DNA bases')
     }
-    console.log(mouse)
   }
   const onExit = (e) => {
     const { color } = e.object.material
@@ -26,6 +34,7 @@ export default function Main() {
     color.g -= 0.1
     color.b -= 0.1
   }
+
   const [scene] = useState(() => new THREE.Scene())
   const composer = useRef()
   const { gl, size, camera } = useThree()
@@ -40,8 +49,8 @@ export default function Main() {
           </>
         )}
       </effectComposer>
-      <ambientLight />
-      <spotLight position={[100, 10, 10]} />
+      <ambientLight intensity={1.5}/>
+      <spotLight position={[50, 10, 10]} />
       <mesh 
         onPointerOver={e => onHover(e)}
         onPointerOut={e => onExit(e)}
