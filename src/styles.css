@@ -45,9 +45,14 @@ canvas {
 .column[name="chart_column"] {
   max-width: 300px;
   min-width: 230px;
+}
 
+.genome_footer {
+  background-color: rgb(20,20,20)!important;
 }
 #genome_gui {
+  opacity: 90%;
+  max-width: 400px;
   text-align: left;
   position: absolute;
   top: 30px;

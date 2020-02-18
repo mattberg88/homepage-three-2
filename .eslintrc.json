@@ -1,0 +1,9 @@
+{
+  "extends": [
+    "airbnb"
+  ],
+  "rules": {
+    "react/prop-types": 0,
+    "no-underscore-dangle": 0
+  }
+}

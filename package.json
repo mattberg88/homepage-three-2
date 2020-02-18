@@ -15,7 +15,10 @@
     "semantic-ui-react": "^0.88.2",
     "three": "0.112.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-config-prettier": "^6.10.0"
+  },
   "scripts": {
     "start": "PORT=3030 react-scripts start",
     "build": "react-scripts build",
