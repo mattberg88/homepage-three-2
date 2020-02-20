@@ -1,8 +1,8 @@
 # Genome Project
 
-This app is a sample app created to showcase to [https://www.unitegenomics.com/](Unite Genomics)
+This app is a sample app created to showcase to [https://www.unitegenomics.com/]
 
-You can view this app live on heroku: [https://project-genome.herokuapp.com/](Heroku Link)
+You can view this app live on heroku: [https://project-genome.herokuapp.com/]
 
 This is a sample project using the ThreeJS-React integration [https://github.com/react-spring/react-three-fiber](react-three-fiber) to display 3D infographics and ChartJS to visualize chart data while using React and Semantic-UI to make for a speedy and aesthetically pleasing user interface.
 
