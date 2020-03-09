@@ -7,13 +7,17 @@ extend({ OrbitControls });
 const Controls = () => {
   const { camera, gl } = useThree();
   const ref = useRef();
-  useFrame(() => ref.current.update());
+  useFrame((e) => {
+    ref.current.object.position.x = e.mouse.x;
+    ref.current.object.position.y = e.mouse.y / 2;
+    ref.current.minDistance = 5;
+    ref.current.maxDistance = 5;
+    return ref.current.update();
+  });
   return (
     <orbitControls
       ref={ref}
       target={[0, 0, 0]}
-      rotateSpeed={0.7}
-      enableDamping
       args={[camera, gl.domElement]}
     />
   );

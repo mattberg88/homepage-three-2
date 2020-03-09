@@ -20,9 +20,8 @@ body,
 }
 
 canvas {
-  height: 80vh;
-  background-color: rgb(230,230,230);
-  border-radius: 8px;
+  height: 100vh;
+  background-color: rgb(10,10,10);
   outline:none;
 }
 .menu {
